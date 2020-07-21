@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/overwatch-news/static/css/main.a8501988.chunk.css",
-    "main.js": "/overwatch-news/static/js/main.ce9a5de1.chunk.js",
-    "main.js.map": "/overwatch-news/static/js/main.ce9a5de1.chunk.js.map",
-    "runtime-main.js": "/overwatch-news/static/js/runtime-main.dd67eced.js",
-    "runtime-main.js.map": "/overwatch-news/static/js/runtime-main.dd67eced.js.map",
-    "static/js/2.c0df1f40.chunk.js": "/overwatch-news/static/js/2.c0df1f40.chunk.js",
-    "static/js/2.c0df1f40.chunk.js.map": "/overwatch-news/static/js/2.c0df1f40.chunk.js.map",
-    "index.html": "/overwatch-news/index.html",
-    "precache-manifest.0416665aa554b18b9993e02b7a67c1de.js": "/overwatch-news/precache-manifest.0416665aa554b18b9993e02b7a67c1de.js",
-    "service-worker.js": "/overwatch-news/service-worker.js",
-    "static/css/main.a8501988.chunk.css.map": "/overwatch-news/static/css/main.a8501988.chunk.css.map",
-    "static/js/2.c0df1f40.chunk.js.LICENSE.txt": "/overwatch-news/static/js/2.c0df1f40.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/overwatch-news/static/media/bg.c9527391.jpg",
-    "static/media/logo.svg": "/overwatch-news/static/media/logo.fd0e0d02.svg",
-    "static/media/placeholder3.jpg": "/overwatch-news/static/media/placeholder3.c0d35eb1.jpg"
+    "main.css": "/overwatched.site/static/css/main.92dfffd8.chunk.css",
+    "main.js": "/overwatched.site/static/js/main.09fc6c2a.chunk.js",
+    "main.js.map": "/overwatched.site/static/js/main.09fc6c2a.chunk.js.map",
+    "runtime-main.js": "/overwatched.site/static/js/runtime-main.f7458e32.js",
+    "runtime-main.js.map": "/overwatched.site/static/js/runtime-main.f7458e32.js.map",
+    "static/js/2.c0df1f40.chunk.js": "/overwatched.site/static/js/2.c0df1f40.chunk.js",
+    "static/js/2.c0df1f40.chunk.js.map": "/overwatched.site/static/js/2.c0df1f40.chunk.js.map",
+    "index.html": "/overwatched.site/index.html",
+    "precache-manifest.d0ab737e633df7b5ae99b29dc3a73ab8.js": "/overwatched.site/precache-manifest.d0ab737e633df7b5ae99b29dc3a73ab8.js",
+    "service-worker.js": "/overwatched.site/service-worker.js",
+    "static/css/main.92dfffd8.chunk.css.map": "/overwatched.site/static/css/main.92dfffd8.chunk.css.map",
+    "static/js/2.c0df1f40.chunk.js.LICENSE.txt": "/overwatched.site/static/js/2.c0df1f40.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/overwatched.site/static/media/bg.c9527391.jpg",
+    "static/media/logo.svg": "/overwatched.site/static/media/logo.fd0e0d02.svg",
+    "static/media/placeholder3.jpg": "/overwatched.site/static/media/placeholder3.c0d35eb1.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.dd67eced.js",
+    "static/js/runtime-main.f7458e32.js",
     "static/js/2.c0df1f40.chunk.js",
-    "static/css/main.a8501988.chunk.css",
-    "static/js/main.ce9a5de1.chunk.js"
+    "static/css/main.92dfffd8.chunk.css",
+    "static/js/main.09fc6c2a.chunk.js"
   ]
 }
