@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/overwatched.site/static/css/main.92dfffd8.chunk.css",
-    "main.js": "/overwatched.site/static/js/main.09fc6c2a.chunk.js",
-    "main.js.map": "/overwatched.site/static/js/main.09fc6c2a.chunk.js.map",
-    "runtime-main.js": "/overwatched.site/static/js/runtime-main.f7458e32.js",
-    "runtime-main.js.map": "/overwatched.site/static/js/runtime-main.f7458e32.js.map",
-    "static/js/2.c0df1f40.chunk.js": "/overwatched.site/static/js/2.c0df1f40.chunk.js",
-    "static/js/2.c0df1f40.chunk.js.map": "/overwatched.site/static/js/2.c0df1f40.chunk.js.map",
-    "index.html": "/overwatched.site/index.html",
-    "precache-manifest.d0ab737e633df7b5ae99b29dc3a73ab8.js": "/overwatched.site/precache-manifest.d0ab737e633df7b5ae99b29dc3a73ab8.js",
-    "service-worker.js": "/overwatched.site/service-worker.js",
-    "static/css/main.92dfffd8.chunk.css.map": "/overwatched.site/static/css/main.92dfffd8.chunk.css.map",
-    "static/js/2.c0df1f40.chunk.js.LICENSE.txt": "/overwatched.site/static/js/2.c0df1f40.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/overwatched.site/static/media/bg.c9527391.jpg",
-    "static/media/logo.svg": "/overwatched.site/static/media/logo.fd0e0d02.svg",
-    "static/media/placeholder3.jpg": "/overwatched.site/static/media/placeholder3.c0d35eb1.jpg"
+    "main.css": "/static/css/main.e29e9dc2.chunk.css",
+    "main.js": "/static/js/main.6bf2420c.chunk.js",
+    "main.js.map": "/static/js/main.6bf2420c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.1ed78d59.js",
+    "runtime-main.js.map": "/static/js/runtime-main.1ed78d59.js.map",
+    "static/js/2.c0df1f40.chunk.js": "/static/js/2.c0df1f40.chunk.js",
+    "static/js/2.c0df1f40.chunk.js.map": "/static/js/2.c0df1f40.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.c49a1517bbd00ee3f11d3caca9132276.js": "/precache-manifest.c49a1517bbd00ee3f11d3caca9132276.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.e29e9dc2.chunk.css.map": "/static/css/main.e29e9dc2.chunk.css.map",
+    "static/js/2.c0df1f40.chunk.js.LICENSE.txt": "/static/js/2.c0df1f40.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/bg.c9527391.jpg",
+    "static/media/logo.svg": "/static/media/logo.fd0e0d02.svg",
+    "static/media/placeholder3.jpg": "/static/media/placeholder3.c0d35eb1.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.f7458e32.js",
+    "static/js/runtime-main.1ed78d59.js",
     "static/js/2.c0df1f40.chunk.js",
-    "static/css/main.92dfffd8.chunk.css",
-    "static/js/main.09fc6c2a.chunk.js"
+    "static/css/main.e29e9dc2.chunk.css",
+    "static/js/main.6bf2420c.chunk.js"
   ]
 }
