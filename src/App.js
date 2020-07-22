@@ -312,7 +312,7 @@ class ArticleBody extends React.Component {
       axios
         .get("https://raw.githubusercontent.com/cajones2004/cajones2004.github.io/dev/src/articles.json")
         .then(function(result) {
-          console.log('received ' + typeof(result.data.articles) +': ')
+          console.log('received ' + typeof(result.data.articles) +' from GitHub rawusercontent: ')
           console.log(result.data.articles)    
           _this.setState({
             articles: result.data
