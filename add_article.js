@@ -75,5 +75,16 @@ for (let img of imgPathArray) {
 }
 
 console.log(newArticleJSON)
+console.log('\n')
 
 currentJSON.articles.unshift(newArticleJSON)
+fs.writeFile('./src/articles.json', JSON.stringify(currentJSON), function (err) {
+    if (err) return console.log(err);
+    console.log('Article successfully added to ./src/articles.json\n');
+  });
+
+console.log('\n')
+console.log('To update the website, do the following: ')
+console.log('--> Commit this change to the dev branch with \'git commit -m "added new article" \'')
+console.log('--> Deploy the site with \'npm run deploy\'\n')
+

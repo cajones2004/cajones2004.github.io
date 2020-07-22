@@ -25,7 +25,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import InstagramIcon from '@material-ui/icons/Instagram';
-import articles from './articles.json'
+// import articles from './articles.json'
+import axios from 'axios'
 
 // localStorage.setItem('article', 0)
 // localStorage.setItem('tag', 'all')
@@ -40,7 +41,7 @@ function changeCurrentTag(newTag) {
   window.location.reload()
 }
 
-function generateArticlesFromJSON(tag, mediaQuery) {
+function generateArticlesFromJSON(tag, mediaQuery, articles) {
   // convert the set of articles from JSON into JSX cards
   // default tag is 'all' to show articles of all tags
   let width = 12
@@ -48,7 +49,7 @@ function generateArticlesFromJSON(tag, mediaQuery) {
   let gridItems = []
   for (let article of articles.articles) {
     if (tag == 'all' || String(article.tag) == tag) {
-      gridItems.push(<Grid item xs={12}>{generateArticleCard(article.date, tag)}</Grid>)
+      gridItems.push(<Grid item xs={12}>{generateArticleCard(article.date, tag, articles)}</Grid>)
     } 
   }
 
@@ -109,7 +110,7 @@ function generateAboutCard() {
   )
 }
 
-function generateArticleCard(targetDate, targetTag) {
+function generateArticleCard(targetDate, targetTag, articles) {
   // generates a card for the article with the specified date ID
   for (let x of articles.articles) {
     if (x.date == targetDate) {
@@ -156,70 +157,70 @@ function generateArticleCard(targetDate, targetTag) {
   return output
 }
 
-function generateFullPageArticleCard(targetDate) {
-  // generates a card for the article with the specified date ID
+// function generateFullPageArticleCard(targetDate) {
+//   // generates a card for the article with the specified date ID
   
-  for (let x of articles.articles) {
-    if (x.date == targetDate) {
-      console.log(String(x.content))
+//   for (let x of articles.articles) {
+//     if (x.date == targetDate) {
+//       console.log(String(x.content))
 
-      let paragraphs = []
-      for (let p of String(x.content).split('\n')) {
-        paragraphs.push(
-          <>
-          <Typography variant="body2" color="textSecondary" component="p">
-                {p}
-          </Typography>
-          <br />
-          </>
-        )
-      }
+//       let paragraphs = []
+//       for (let p of String(x.content).split('\n')) {
+//         paragraphs.push(
+//           <>
+//           <Typography variant="body2" color="textSecondary" component="p">
+//                 {p}
+//           </Typography>
+//           <br />
+//           </>
+//         )
+//       }
 
-      var output = (
-        <Card elevation={20}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              alt="cover image failed to load"
-              height="140"
-              image={require('./images/placeholder3.jpg')}
-              title="article"
-            />
-            <CardContent>
+//       var output = (
+//         <Card elevation={20}>
+//           <CardActionArea>
+//             <CardMedia
+//               component="img"
+//               alt="cover image failed to load"
+//               height="140"
+//               image={require('./images/placeholder3.jpg')}
+//               title="article"
+//             />
+//             <CardContent>
               
-              <Typography variant="caption" color="textSecondary" gutterBottom>
-              {String(x.date).substring(0,4) + '/' + String(x.date).substring(4,6) + '/' + String(x.date).substring(6,8)}
-              </Typography>
-              <Typography gutterBottom variant="h5" component="h2">
-                {x.title}
-              </Typography>
-              <Typography variant='subtitle1' color="textSecondary" gutterBottom>
-                {/* <Button size="small" color="success"> */}
-                  <LabelImportantIcon />
-                  {x.tag}
-                {/* </Button> */}
-              </Typography>
-              {paragraphs}
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary" onClick={() => changeCurrentArticle(0)}>
-              More Articles
-            </Button>
-          </CardActions>
-          <CardActions>
-            <Button size="small" color="success">
-              <LabelImportantIcon />
-              {x.tag}
-            </Button>
-          </CardActions>
+//               <Typography variant="caption" color="textSecondary" gutterBottom>
+//               {String(x.date).substring(0,4) + '/' + String(x.date).substring(4,6) + '/' + String(x.date).substring(6,8)}
+//               </Typography>
+//               <Typography gutterBottom variant="h5" component="h2">
+//                 {x.title}
+//               </Typography>
+//               <Typography variant='subtitle1' color="textSecondary" gutterBottom>
+//                 {/* <Button size="small" color="success"> */}
+//                   <LabelImportantIcon />
+//                   {x.tag}
+//                 {/* </Button> */}
+//               </Typography>
+//               {paragraphs}
+//             </CardContent>
+//           </CardActionArea>
+//           <CardActions>
+//             <Button size="small" color="primary" onClick={() => changeCurrentArticle(0)}>
+//               More Articles
+//             </Button>
+//           </CardActions>
+//           <CardActions>
+//             <Button size="small" color="success">
+//               <LabelImportantIcon />
+//               {x.tag}
+//             </Button>
+//           </CardActions>
           
-        </Card>
-      )
-    }
-  }
-  return output
-}
+//         </Card>
+//       )
+//     }
+//   }
+//   return output
+// }
 
 function ElevationScroll(props) {
   const { children, window } = props;
@@ -249,9 +250,43 @@ function footer() {
   )
 }
 
+class ArticleBody extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        articles: {}
+    };
+}
+
+  componentDidMount() {
+    var _this = this;
+    this.serverRequest = 
+      axios
+        .get("https://raw.githubusercontent.com/cajones2004/cajones2004.github.io/dev/src/articles.json")
+        .then(function(result) {
+          console.log('received ' + typeof(result.data.articles) +': ')
+          console.log(result.data.articles)    
+          _this.setState({
+            articles: result.data
+          });
+        })
+  }
+
+  componentWillUnmount() {
+    this.serverRequest.abort();
+  }
+
+  render() {
+    return (
+      <>
+        {/* {generateArticlesFromJSON(localStorage.getItem('tag'), localStorage.getItem('desktop'), this.state.articles)} */}
+      </>
+    )
+  }
+}
 
 function App() {
-
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -262,46 +297,47 @@ function App() {
     setAnchorEl(null);
   };
 
-  const desktopQuery = useMediaQuery('(min-width:768px)')
+  localStorage.setItem('desktop', useMediaQuery('(min-width:768px)'))
   if (localStorage.getItem('article') == 0){
     return (
       <div className="App">
         <CssBaseline />
-        <ElevationScroll {...{}}>
-          <AppBar color='blank' elevation={20}>
-            <Toolbar>
-              <Typography variant="h6">overwatched.site</Typography>
-              <Grid container alignItems="flex-start" justify="flex-end" direction="row">
-                  <a href='https://www.instagram.com/overwatched.site/'><Button >
-                    <InstagramIcon />
-                  </Button></a>
-                <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                  Browse by category
-                </Button>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={() => changeCurrentTag('all')}>All</MenuItem>
-                  <MenuItem onClick={() => changeCurrentTag('overwatch league')}>OverWatch League</MenuItem>
-                  <MenuItem onClick={() => changeCurrentTag('power rankings')}>Power Rankings</MenuItem>
-                  <MenuItem onClick={() => changeCurrentTag('run it back')}>Run It Back</MenuItem>
-                  <MenuItem onClick={() => changeCurrentTag('overwatch world cup')}>Overwatch World Cup</MenuItem>
-                </Menu>
-              </Grid>
-            </Toolbar>
-          </AppBar>
-        </ElevationScroll>
+                <ElevationScroll {...{}}>
+                  <AppBar color='blank' elevation={20}>
+                    <Toolbar>
+                      <Typography variant="h6">overwatched.site</Typography>
+                      <Grid container alignItems="flex-start" justify="flex-end" direction="row">
+                          <a href='https://www.instagram.com/overwatched.site/'><Button >
+                            <InstagramIcon />
+                          </Button></a>
+                        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                          Browse by category
+                        </Button>
+                        <Menu
+                          id="simple-menu"
+                          anchorEl={anchorEl}
+                          keepMounted
+                          open={Boolean(anchorEl)}
+                          onClose={handleClose}
+                        >
+                          <MenuItem onClick={() => changeCurrentTag('all')}>All</MenuItem>
+                          <MenuItem onClick={() => changeCurrentTag('overwatch league')}>Overwatch League</MenuItem>
+                          <MenuItem onClick={() => changeCurrentTag('power rankings')}>Power Rankings</MenuItem>
+                          <MenuItem onClick={() => changeCurrentTag('run it back')}>Run It Back</MenuItem>
+                          <MenuItem onClick={() => changeCurrentTag('overwatch world cup')}>Overwatch World Cup</MenuItem>
+                        </Menu>
+                      </Grid>
+                    </Toolbar>
+                  </AppBar>
+                </ElevationScroll>
         <br />
         <br />
         <br />
         <br />
         <br />
+        <ArticleBody />
         <Container>
-          {generateArticlesFromJSON(localStorage.getItem('tag'), desktopQuery)}
+          {/* {generateArticlesFromJSON(localStorage.getItem('tag'), desktopQuery)} */}
         </Container>
         <br />
         <br />
@@ -316,34 +352,34 @@ function App() {
     return (
       <div className="App">
         <CssBaseline />
-        <ElevationScroll {...{}}>
-          <AppBar color='blank' elevation={20}>
-          <Toolbar>
-              <Typography variant="h6">overwatched.site</Typography>
-              <Grid container alignItems="flex-start" justify="flex-end" direction="row">
-                  <a href='https://www.instagram.com/overwatched.site/'><Button >
-                    <InstagramIcon />
-                  </Button></a>
-                <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                  Browse by category
-                </Button>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorEl}
-                  keepMounted
-                  open={Boolean(anchorEl)}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={() => changeCurrentTag('all')}>All</MenuItem>
-                  <MenuItem onClick={() => changeCurrentTag('overwatch league')}>OverWatch League</MenuItem>
-                  <MenuItem onClick={() => changeCurrentTag('power rankings')}>Power Rankings</MenuItem>
-                  <MenuItem onClick={() => changeCurrentTag('run it back')}>Run It Back</MenuItem>
-                  <MenuItem onClick={() => changeCurrentTag('overwatch world cup')}>Overwatch World Cup</MenuItem>
-                </Menu>
-              </Grid>
-            </Toolbar>
-          </AppBar>
-        </ElevationScroll>
+                <ElevationScroll {...{}}>
+                  <AppBar color='blank' elevation={20}>
+                    <Toolbar>
+                      <Typography variant="h6">overwatched.site</Typography>
+                      <Grid container alignItems="flex-start" justify="flex-end" direction="row">
+                          <a href='https://www.instagram.com/overwatched.site/'><Button >
+                            <InstagramIcon />
+                          </Button></a>
+                        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                          Browse by category
+                        </Button>
+                        <Menu
+                          id="simple-menu"
+                          anchorEl={anchorEl}
+                          keepMounted
+                          open={Boolean(anchorEl)}
+                          onClose={handleClose}
+                        >
+                          <MenuItem onClick={() => changeCurrentTag('all')}>All</MenuItem>
+                          <MenuItem onClick={() => changeCurrentTag('overwatch league')}>Overwatch League</MenuItem>
+                          <MenuItem onClick={() => changeCurrentTag('power rankings')}>Power Rankings</MenuItem>
+                          <MenuItem onClick={() => changeCurrentTag('run it back')}>Run It Back</MenuItem>
+                          <MenuItem onClick={() => changeCurrentTag('overwatch world cup')}>Overwatch World Cup</MenuItem>
+                        </Menu>
+                      </Grid>
+                    </Toolbar>
+                  </AppBar>
+                </ElevationScroll>
         <br />
         <br />
         <br />
@@ -352,7 +388,7 @@ function App() {
         <Container>
           <Grid containter spacing={3}>
             <Grid item xs={12}>
-              {generateFullPageArticleCard(localStorage.getItem('article'))}
+              {/* {generateFullPageArticleCard(localStorage.getItem('article'))} */}
             </Grid>
           </Grid>
         </Container>
