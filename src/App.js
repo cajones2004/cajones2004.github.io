@@ -331,16 +331,17 @@ class ArticleBody extends React.Component {
   }
 
   render() {
+    console.log('rendering from local JSON')
     if (localStorage.getItem('article') == 0) {
       return (
         <>
-          {generateArticlesFromJSON(localStorage.getItem('tag'), localStorage.getItem('desktop'), this.state.articles)}
+          {generateArticlesFromJSON(localStorage.getItem('tag'), localStorage.getItem('desktop'), articlesJSON)}
         </>
       )
     } else {
       return (
         <>
-          {generateFullPageArticleCard(localStorage.getItem('article'), this.state.articles)}
+          {generateFullPageArticleCard(localStorage.getItem('article'), articlesJSON)}
         </>
       )
     }
