@@ -82,7 +82,10 @@ fs.writeFile('./src/articles.json', JSON.stringify(currentJSON), function (err) 
     if (err) return console.log(err);
     console.log('Article successfully added to ./src/articles.json\n');
   });
-
+fs.writeFile('./public/articles.json', JSON.stringify(currentJSON), function (err) {
+    if (err) return console.log(err);
+    console.log('Article successfully added to ./src/articles.json\n');
+  });
 console.log('\n')
 console.log('To update the website, do the following: ')
 console.log('--> Commit this change to the dev branch with \'git commit -m "added new article" \'')

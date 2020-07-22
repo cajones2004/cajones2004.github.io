@@ -26,7 +26,10 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import InstagramIcon from '@material-ui/icons/Instagram';
 // import articles from './articles.json'
+import articlesJSON from './articles.json'
 import axios from 'axios'
+console.log('opened local JSON ')
+console.log(articlesJSON)
 
 // localStorage.setItem('article', 0)
 // localStorage.setItem('tag', 'all')
