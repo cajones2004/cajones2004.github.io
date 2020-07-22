@@ -297,6 +297,8 @@ function footer() {
   )
 }
 
+
+
 class ArticleBody extends React.Component {
   constructor(props) {
     super(props);
@@ -317,6 +319,7 @@ class ArticleBody extends React.Component {
           _this.setState({
             articles: result.data
           });
+          _this.forceUpdate()
         })
   }
 
