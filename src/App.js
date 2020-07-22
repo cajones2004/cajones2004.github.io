@@ -31,6 +31,9 @@ import axios from 'axios'
 console.log('opened local JSON ')
 console.log(articlesJSON)
 
+var _articles = JSON.parse(JSON.stringify(articlesJSON))
+
+
 // localStorage.setItem('article', 0)
 // localStorage.setItem('tag', 'all')
 
@@ -331,11 +334,12 @@ class ArticleBody extends React.Component {
   }
 
   render() {
-    console.log('rendering from local JSON')
+    console.log('rendering from local JSON in local var')
+    console.log(_articles)
     if (localStorage.getItem('article') == 0) {
       return (
         <>
-          {generateArticlesFromJSON(localStorage.getItem('tag'), localStorage.getItem('desktop'), articlesJSON)}
+          {generateArticlesFromJSON(localStorage.getItem('tag'), localStorage.getItem('desktop'), _articles)}
         </>
       )
     } else {
